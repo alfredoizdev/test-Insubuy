@@ -1,0 +1,102 @@
+@import 'styles/colors';
+@import 'styles/mixin';
+
+.formContainer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 10px;
+	.form {
+		margin-top: 20px;
+		width: 100%;
+		margin-left: auto;
+		margin-right: auto;
+		height: auto;
+		border: 1px solid #ccc;
+
+		.formHeader {
+			display: flex;
+			justify-content: flex-start;
+			align-items: center;
+			background-color: $ligth;
+			h2 {
+				margin-left: 10px;
+				color: $secondary;
+				font-size: 17px;
+			}
+		}
+
+		.inputForm {
+			display: flex;
+			justify-content: flex-start;
+			align-items: center;
+			padding: 0 10px;
+
+			.formDate {
+				display: flex;
+				width: 100%;
+				input {
+					&:first-child {
+						margin-right: 5px;
+					}
+				}
+				
+			}
+
+			div {
+				margin: 5px;
+				width: 48%;
+
+				label {
+					font-weight: 700;
+				}
+				input {
+					width: 100%;
+					box-sizing: border-box;
+					margin: 10px 0;
+    				padding: 10px;
+					border: 1px solid #d8d8d8;
+					border-radius: 2px;
+				}
+
+				@include for-640 {
+					width: 100%;	
+				}
+			}
+
+			@include for-640 {
+				flex-direction: column;	
+			}
+		}
+
+		.actionForm {
+
+			padding: 10px;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			flex-direction: column;
+			
+			button {
+				text-transform: uppercase;
+				color: white;
+				width: 100%;
+				background-color: $primary;
+				border: none;
+				padding: 5px;
+
+				@include for-640 {
+					width: 50%;
+				}
+			}
+
+			.resetForm {
+				border: none;
+				background: transparent;
+				text-decoration: underline;
+				color: $secondary;
+				font-style: italic;
+			}
+		}
+	}
+} 

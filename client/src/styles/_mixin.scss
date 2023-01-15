@@ -1,0 +1,17 @@
+@mixin for-540 {
+    @media (max-width: 540px) {
+        @content;
+    }
+}
+
+@mixin for-575 {
+    @media (max-width:575px) {
+        @content;
+    }
+}
+
+@mixin for-640 {
+    @media (max-width: 640px) {
+        @content;
+    }
+}
