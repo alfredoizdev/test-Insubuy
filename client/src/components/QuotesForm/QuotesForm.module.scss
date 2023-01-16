@@ -61,6 +61,7 @@
 				@include for-640 {
 					width: 100%;	
 				}
+
 			}
 
 			@include for-640 {
@@ -77,13 +78,7 @@
 			flex-direction: column;
 			
 			button {
-				cursor: pointer;
-				text-transform: uppercase;
-				color: white;
-				width: 100%;
-				background-color: $primary;
-				border: none;
-				padding: 5px;
+				@include primaryButton;
 
 				@include for-640 {
 					width: 50%;
@@ -100,4 +95,9 @@
 			}
 		}
 	}
-} 
+}
+
+.errorMsg {
+		color: red;
+		width: 100%;
+	}

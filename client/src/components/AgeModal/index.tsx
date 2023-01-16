@@ -1,13 +1,24 @@
-import { FunctionComponent, SetStateAction } from 'react';
+import { FormEvent, FunctionComponent, SetStateAction, useState } from 'react';
 import styles from './AgeModal.module.scss';
 
 
 interface Props {
-	setShowAgeModal: (value: SetStateAction<boolean>) => void
+	value: any;
+	setShowAgeModal: (value: SetStateAction<boolean>) => void;
+	handleInputChange: (e: FormEvent<HTMLInputElement> | React.FormEvent<HTMLSelectElement>) => void
 }
 
 
-const AgeModal: FunctionComponent<Props> = ({ setShowAgeModal }) => {
+
+const AgeModal: FunctionComponent<Props> = ({ setShowAgeModal, handleInputChange, value }) => {
+
+	const [inputActivate, setInputActivate] = useState('age');
+
+	const hadleUpdate = () => {
+		setShowAgeModal(false)
+	}
+
+	console.log(inputActivate)
 	return (
 		<div className={styles.ageContainer}>
 			<div className={styles.modalBody}>
@@ -18,33 +29,36 @@ const AgeModal: FunctionComponent<Props> = ({ setShowAgeModal }) => {
 						type="button">X</button>
 				</div>
 				<div className={styles.inputsArea}>
-					<div>
+					<div onClick={() => setInputActivate("age")}>
 						<label htmlFor="age">Age</label>
 						<input
 							id="age"
 							type="text"
 							placeholder='Choose your age'
 							name="age"
-						// onChange={handleInputChange}
-						// onFocus={() => setShowAgeModal(true)}
-						// value={age}
-						// disabled={showAgeModal}
+							onChange={handleInputChange}
+							value={inputActivate === 'date' ? '' : value}
+							disabled={inputActivate === 'date'}
 						/>
 					</div>
 					<span>OR</span>
-					<div>
+					<div onClick={() => setInputActivate("date")}>
 						<label htmlFor="age">Date</label>
 						<input
 							id="age"
 							type="text"
-							placeholder='Choose your age'
+							placeholder='Birth day'
 							name="age"
-						// onChange={handleInputChange}
-						// onFocus={() => setShowAgeModal(true)}
-						// value={age}
-						// disabled={showAgeModal}
+							onChange={handleInputChange}
+							onFocus={(e) => (e.target.type = "date")}
+							onBlur={(e) => (e.target.type = "text")}
+							value={inputActivate === 'age' ? '' : value}
+							disabled={inputActivate === 'age'}
 						/>
 					</div>
+				</div>
+				<div className={styles.actionModal}>
+					<button onClick={hadleUpdate} type='button'>Update</button>
 				</div>
 			</div>
 		</div>

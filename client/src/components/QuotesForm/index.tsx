@@ -1,31 +1,33 @@
 import AgeModal from 'components/AgeModal';
+import { validations } from 'helpers/validations';
 import { useForm } from 'hooks/useForm';
-import { FunctionComponent, useState } from 'react';
+import { FunctionComponent, useEffect, useState } from 'react';
 import styles from './QuotesForm.module.scss';
 
 
-interface Props {
-
-}
-
-
-const QuotesForm: FunctionComponent<Props> = ({ }) => {
+const QuotesForm: FunctionComponent = () => {
 
 	const [showAgeModal, setShowAgeModal] = useState(false);
+	const [erros, setErros] = useState<any>({});
 	const { formValues, handleInputChange, handleSubmit, handleClear } = useForm({
-		max: 50,
+		max: '50',
 		age: '',
 		start: '',
 		end: '',
 		citizenship: '',
 		mailingState: '',
 	},
-		(values) => {
-			console.log(values)
+		(values: any) => {
+			setErros(validations(values));
 		}
-	)
+	);
 
-	const { max, age, start, end, citizenship, mailingState } = formValues
+	const handleResetForm = () => {
+		handleClear();
+		setErros({});
+	}
+
+	const { max, age, start, end, citizenship, mailingState } = formValues;
 
 
 	return (
@@ -63,6 +65,7 @@ const QuotesForm: FunctionComponent<Props> = ({ }) => {
 								value={age}
 								disabled={showAgeModal}
 							/>
+							{erros.age && <div className={styles.errorMsg}>{erros.age}</div>}
 						</div>
 					</div>
 					<div className={styles.inputForm}>
@@ -70,7 +73,6 @@ const QuotesForm: FunctionComponent<Props> = ({ }) => {
 							<label htmlFor="start">Travel Dates (mm/dd/yyyy)</label>
 							<div className={styles.formDate}>
 								<input
-
 									id="start"
 									type="text"
 									placeholder='Start day'
@@ -92,6 +94,8 @@ const QuotesForm: FunctionComponent<Props> = ({ }) => {
 									value={end}
 								/>
 							</div>
+							{erros.start && <div className={styles.errorMsg}>{erros.start}</div>}
+							{erros.end && <div className={styles.errorMsg}>{erros.end}</div>}
 						</div>
 						<div>
 							<label htmlFor="Citizenship">Citizenship</label>
@@ -103,8 +107,10 @@ const QuotesForm: FunctionComponent<Props> = ({ }) => {
 								onChange={handleInputChange}
 								value={citizenship}
 							/>
+							{erros.citizenship && <div className={styles.errorMsg}>{erros.citizenship}</div>}
 						</div>
 					</div>
+
 					<div className={styles.inputForm}>
 						<div>
 							<label htmlFor="mailingState">Mailing State</label>
@@ -116,6 +122,7 @@ const QuotesForm: FunctionComponent<Props> = ({ }) => {
 								onChange={handleInputChange}
 								value={mailingState}
 							/>
+							{erros.mailingState && <div className={styles.errorMsg}>{erros.mailingState}</div>}
 						</div>
 					</div>
 					<div className={styles.actionForm}>
@@ -125,14 +132,18 @@ const QuotesForm: FunctionComponent<Props> = ({ }) => {
 						<button
 							type='button'
 							className={styles.resetForm}
-							onClick={handleClear}
+							onClick={handleResetForm}
 						>
 							Reset Form
 						</button>
 					</div>
 				</form>
 			</div>
-			{showAgeModal && <AgeModal setShowAgeModal={setShowAgeModal} />}
+			{showAgeModal &&
+				<AgeModal
+					setShowAgeModal={setShowAgeModal}
+					handleInputChange={handleInputChange}
+					value={age} />}
 
 		</>
 	);

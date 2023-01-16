@@ -10,8 +10,10 @@ export const useForm = (
 
 	const handleInputChange = (e: FormEvent<HTMLInputElement> | FormEvent<HTMLSelectElement>) => {
 		const { name, value } = e.currentTarget;
+
 		setFormValues({
 			...formValues,
+			// clean especial characters
 			[name]: value,
 		});
 	};

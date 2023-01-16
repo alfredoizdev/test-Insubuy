@@ -347,6 +347,11 @@ template {
   display: none;
 }
 
+input:disabled {
+	background-color: rgb(216, 216, 216);
+	cursor: not-allowed;
+}
+
 /**
  * Add container size
  */
