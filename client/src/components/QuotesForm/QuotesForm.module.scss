@@ -51,12 +51,11 @@
 					font-weight: 700;
 				}
 				input {
-					width: 100%;
-					box-sizing: border-box;
-					margin: 10px 0;
-    				padding: 10px;
-					border: 1px solid #d8d8d8;
-					border-radius: 2px;
+					@include inputStyle
+				}
+
+				select {
+					@include inputStyle
 				}
 
 				@include for-640 {
@@ -78,6 +77,7 @@
 			flex-direction: column;
 			
 			button {
+				cursor: pointer;
 				text-transform: uppercase;
 				color: white;
 				width: 100%;
@@ -91,6 +91,7 @@
 			}
 
 			.resetForm {
+				cursor: pointer;
 				border: none;
 				background: transparent;
 				text-decoration: underline;

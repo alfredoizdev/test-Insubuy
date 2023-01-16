@@ -1,3 +1,9 @@
+@mixin for-430 {
+    @media (max-width: 430px) {
+        @content;
+    }
+}
+
 @mixin for-540 {
     @media (max-width: 540px) {
         @content;
@@ -14,4 +20,14 @@
     @media (max-width: 640px) {
         @content;
     }
+}
+
+@mixin inputStyle {
+	width: 100%;
+	box-sizing: border-box;
+	margin: 10px 0;
+	padding: 10px;
+	border: 1px solid #d8d8d8;
+	border-radius: 2px;
+		
 }
