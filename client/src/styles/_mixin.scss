@@ -28,6 +28,12 @@
     }
 }
 
+@mixin for-200 {
+    @media (max-width: 200px) {
+        @content;
+    }
+}
+
 @mixin inputStyle {
 	width: 100%;
 	box-sizing: border-box;
@@ -53,7 +59,7 @@
 }
 
 @mixin shadom-2 {
-	box-shadow: -8px 9px 6px -10px rgb(0 0 0 / 75%);
+	box-shadow: 1px 6px 10px -9px rgb(0 0 0 / 75%);
 }
 
 @mixin shadom-3 {

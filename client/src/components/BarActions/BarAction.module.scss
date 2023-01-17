@@ -14,7 +14,9 @@
 	right: 15%;
     background: #a0a0a073;
 	border-radius: 10px;
+	box-sizing: border-box;
 
+	
 	.openFormBtn {
 		display: block;
 		width: 100%;
@@ -40,4 +42,17 @@
 		background-color: $dark;
 		color: white;
 	}
+
+	@include for-540 {
+		width: 100%;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		border-radius: 0;
+	}
+
+	@include for-200 {
+		 flex-direction: column;
+	}
+
 }

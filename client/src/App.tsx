@@ -1,5 +1,5 @@
 import QuotesForm from 'components/QuotesForm';
-import QuotesList from 'components/QuotesList';
+import QuotesList from 'components/QuoteList';
 import { AppContext } from 'context';
 import Layout from 'Layout';
 import { useContext } from 'react';

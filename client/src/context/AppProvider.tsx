@@ -9,7 +9,7 @@ export interface AppState {
 }
 
 const APP_INITIAL_STATE: AppState = {
-	showQuotes: true,
+	showQuotes: false,
 	quoteList: [],
 	view: 'list'
 };

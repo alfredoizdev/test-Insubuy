@@ -18,8 +18,20 @@ const Quote: FunctionComponent<Props> = ({ quote }) => {
 				<h2> {quote.name}</h2>
 			</div>
 			<div className={styles.cardBody}>
+				<span>{quote.section}</span>
 				<p>{quote.description}</p>
 			</div>
+			<div className={styles.cardFooter}>
+
+				{quote.bestSellers && <div className={styles.betSeller}>Best Seller</div>}
+
+				<span>{quote.price.toLocaleString("en-US", {
+					style: "currency",
+					currency: "USD",
+				})}</span>
+
+			</div>
+
 		</div>
 	);
 };
