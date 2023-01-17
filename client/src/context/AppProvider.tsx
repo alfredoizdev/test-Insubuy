@@ -1,5 +1,5 @@
 import { FunctionComponent, ReactNode, useEffect, useReducer } from 'react';
-import { AppContext, AppReducer } from './';
+import { AppContext, AppReducer, TFilter } from './';
 import { IQuote } from '../interfaces/quotes';
 
 export interface AppState {
@@ -44,12 +44,30 @@ export const AppProvider: FunctionComponent<Props> = ({ children }) => {
 		dispatch({ type: '[App] - Set View', payload: view })
 	}
 
+	const filterBy = (filter: TFilter) => {
+		if (state.quoteList) {
+			let filterData = []
+			switch (filter) {
+				case TFilter.bestSeller:
+
+					filterData = state.quoteList.filter((item) => item.bestSellers);
+					dispatch({ type: '[App] - Fetch and set Quotes data', payload: filterData });
+					return;
+				case TFilter.max:
+					filterData = state.quoteList.sort((a, b) => Number(b.price) - Number(a.price));
+					dispatch({ type: '[App] - Fetch and set Quotes data', payload: filterData });
+					return;
+			}
+		}
+	}
+
 	return (
 		<AppContext.Provider
 			value={{
 				...state,
 				setQuotesViewStatus,
-				setView
+				setView,
+				filterBy
 			}}
 		>
 			{children}

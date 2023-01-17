@@ -3,6 +3,7 @@ import { AppContext } from 'context/AppContext';
 import styles from './QuoteList.module.scss'
 import Quote from 'components/Quote';
 import BarAction from 'components/BarActions';
+import FilterBar from 'components/FilterBar';
 
 
 const QuoteList: FunctionComponent = () => {
@@ -13,6 +14,7 @@ const QuoteList: FunctionComponent = () => {
 
 	return (
 		<>
+			<FilterBar />
 			<BarAction />
 			<div className={view === 'list' ? styles.list : styles.grid}>
 				{quoteList.map((quote) => (
