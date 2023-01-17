@@ -1,10 +1,11 @@
 import { FormEvent, SyntheticEvent, useState } from "react";
 import { clearValues } from "helpers/clearValues";
+import { IFormDataState } from "interfaces/formData";
 
 interface useFormProps {
-	initialState: any;
-	onSubmit: (values: any, errors: any) => void;
-	validationSchema?: (values: any) => any;
+	initialState: IFormDataState;
+	onSubmit: (values: IFormDataState, errors: any) => void;
+	validationSchema?: (values: IFormDataState) => any;
 }
 
 export const useForm = ({

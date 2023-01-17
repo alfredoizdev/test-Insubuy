@@ -1,6 +1,7 @@
+import { IFormDataState } from 'interfaces/formData';
 import moment from 'moment';
 
-export const validations = (values: any):any => {
+export const validations = (values: IFormDataState):any => {
 
 		const { age, startDate, endDate, citizenship, mailingState } = values
 		const errors: any = {}
@@ -26,7 +27,7 @@ export const validations = (values: any):any => {
 		if (!mailingState) {
 			errors.mailingState = 'Mailing State is Required'
 		}
-		//console.log(startDate.diff(endDate))
+		
 		if(startDateMoment.diff(endDateMoment) > 0) {
 			errors.dateDiff = 'End Date cant be greater than start'
 		}
