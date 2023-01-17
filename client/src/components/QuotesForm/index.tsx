@@ -1,33 +1,49 @@
 import AgeModal from 'components/AgeModal';
 import { validations } from 'helpers/validations';
 import { useForm } from 'hooks/useForm';
-import { FunctionComponent, useEffect, useState } from 'react';
+import { FunctionComponent, useState } from 'react';
 import styles from './QuotesForm.module.scss';
+import { fetchData } from '../../helpers/fetchData';
 
 
 const QuotesForm: FunctionComponent = () => {
 
+
+
 	const [showAgeModal, setShowAgeModal] = useState(false);
-	const [erros, setErros] = useState<any>({});
-	const { formValues, handleInputChange, handleSubmit, handleClear } = useForm({
-		max: '50',
-		age: '',
-		start: '',
-		end: '',
-		citizenship: '',
-		mailingState: '',
-	},
-		(values: any) => {
-			setErros(validations(values));
-		}
+	// const [erros, setErros] = useState<any>({});
+	const { formValues, handleInputChange, handleSubmit, handleClear, errors } = useForm({
+		initialState: {
+			policyMax: '50',
+			age: '',
+			endDate: '',
+			startDate: '',
+			end: '',
+			citizenship: '',
+			mailingState: '',
+		},
+		onSubmit: async (values, { isValid }) => {
+
+			console.log(isValid)
+			if (isValid) {
+
+				const response = await fetchData(values);
+				const data = await response.json();
+				console.log(data)
+
+
+			}
+		},
+		validationSchema: validations
+	}
+
 	);
 
 	const handleResetForm = () => {
 		handleClear();
-		setErros({});
 	}
 
-	const { max, age, start, end, citizenship, mailingState } = formValues;
+	const { policyMax, age, startDate, endDate, citizenship, mailingState } = formValues;
 
 
 	return (
@@ -39,13 +55,13 @@ const QuotesForm: FunctionComponent = () => {
 					</div>
 					<div className={styles.inputForm}>
 						<div>
-							<label htmlFor="max">Policy Maximun</label>
+							<label htmlFor="policyMax">Policy Maximun</label>
 							<select
-								id="max"
+								id="policyMax"
 								placeholder='Choise your policy maximum'
-								name="max"
+								name="policyMax"
 								onChange={handleInputChange}
-								value={max}
+								value={policyMax}
 							>
 								<option value={50}> $50,000</option>
 								<option value={100}>$100,000</option>
@@ -65,7 +81,7 @@ const QuotesForm: FunctionComponent = () => {
 								value={age}
 								disabled={showAgeModal}
 							/>
-							{erros.age && <div className={styles.errorMsg}>{erros.age}</div>}
+							{errors.age && <div className={styles.errorMsg}>{errors.age}</div>}
 						</div>
 					</div>
 					<div className={styles.inputForm}>
@@ -78,9 +94,9 @@ const QuotesForm: FunctionComponent = () => {
 									placeholder='Start day'
 									onFocus={(e) => (e.target.type = "date")}
 									onBlur={(e) => (e.target.type = "text")}
-									name="start"
+									name="startDate"
 									onChange={handleInputChange}
-									value={start}
+									value={startDate}
 
 								/>
 								<input
@@ -89,13 +105,14 @@ const QuotesForm: FunctionComponent = () => {
 									placeholder='End Day'
 									onFocus={(e) => (e.target.type = "date")}
 									onBlur={(e) => (e.target.type = "text")}
-									name="end"
+									name="endDate"
 									onChange={handleInputChange}
-									value={end}
+									value={endDate}
 								/>
 							</div>
-							{erros.start && <div className={styles.errorMsg}>{erros.start}</div>}
-							{erros.end && <div className={styles.errorMsg}>{erros.end}</div>}
+							{errors.start && <div className={styles.errorMsg}>{errors.start}</div>}
+							{errors.end && <div className={styles.errorMsg}>{errors.end}</div>}
+							{errors.dateDiff && <div className={styles.errorMsg}>{errors.dateDiff}</div>}
 						</div>
 						<div>
 							<label htmlFor="Citizenship">Citizenship</label>
@@ -107,7 +124,7 @@ const QuotesForm: FunctionComponent = () => {
 								onChange={handleInputChange}
 								value={citizenship}
 							/>
-							{erros.citizenship && <div className={styles.errorMsg}>{erros.citizenship}</div>}
+							{errors.citizenship && <div className={styles.errorMsg}>{errors.citizenship}</div>}
 						</div>
 					</div>
 
@@ -122,7 +139,7 @@ const QuotesForm: FunctionComponent = () => {
 								onChange={handleInputChange}
 								value={mailingState}
 							/>
-							{erros.mailingState && <div className={styles.errorMsg}>{erros.mailingState}</div>}
+							{errors.mailingState && <div className={styles.errorMsg}>{errors.mailingState}</div>}
 						</div>
 					</div>
 					<div className={styles.actionForm}>
