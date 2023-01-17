@@ -1,0 +1,43 @@
+@import 'styles/colors';
+@import 'styles/mixin';
+
+.barAction{
+    position: fixed;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 65%;
+    bottom: 5px;
+	left: 15%;
+	right: 15%;
+    background: #a0a0a073;
+	border-radius: 10px;
+
+	.openFormBtn {
+		display: block;
+		width: 100%;
+	}
+
+	button {
+		background-color: $primary;
+		border-radius: 5px;
+		border: none;
+		margin: 3px;
+		color: $dark;
+		width: 40px;
+		height: 40px;
+		padding: 5px;
+		display: inline-block;
+		margin: 0 auto;
+    	vertical-align: middle;
+		margin: 3px;
+		@include shadom-3
+	}
+
+	.activate {
+		background-color: $dark;
+		color: white;
+	}
+}

@@ -1,0 +1,43 @@
+@import 'styles/colors';
+@import 'styles/mixin';
+
+
+.card {
+	width: 100%;
+	@include shadom-2;
+	margin-top: 10px;
+	overflow: hidden;
+	.cardHeader {
+		display: flex;
+		justify-content: flex-start;
+    	align-items: center;
+		width: 100%;
+
+		.quoteIndex {
+			background-color: $gray-dark;
+			color: white;
+			padding: 10px;
+			border-radius: 5px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-grow: 1;
+			margin-left: 5px;
+			width: 10px;
+			height: 20px;
+		}
+		h2 {
+			font-size: 20px;
+			line-height: 18px;
+			letter-spacing: 0.0625em;
+			margin-left: 5px;
+			color: $gray-dark;
+			flex-grow: 70;
+		
+		}
+	}
+
+	.cardBody{
+		padding: 10px;
+	}
+}

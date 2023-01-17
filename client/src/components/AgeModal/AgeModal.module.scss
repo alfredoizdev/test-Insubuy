@@ -21,7 +21,7 @@
 		border-radius: 2px;
 		margin-left: 10px;
 		margin-right: 10px;
-		box-shadow: -3px 9px 13px -8px rgba(0,0,0,0.75);
+		@include shadom-1;
 
 		@include for-640 {
 			width: 100%;

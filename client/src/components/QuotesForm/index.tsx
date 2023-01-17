@@ -1,17 +1,16 @@
 import AgeModal from 'components/AgeModal';
 import { validations } from 'helpers/validations';
 import { useForm } from 'hooks/useForm';
-import { FunctionComponent, useState } from 'react';
+import { FunctionComponent, useContext, useState } from 'react';
 import styles from './QuotesForm.module.scss';
-import { fetchData } from '../../helpers/fetchData';
+import { fetchData } from 'helpers/fetchData';
+import { AppContext } from 'context/AppContext';
 
 
 const QuotesForm: FunctionComponent = () => {
 
-
-
+	const { setQuotesViewStatus } = useContext(AppContext);
 	const [showAgeModal, setShowAgeModal] = useState(false);
-	// const [erros, setErros] = useState<any>({});
 	const { formValues, handleInputChange, handleSubmit, handleClear, errors } = useForm({
 		initialState: {
 			policyMax: '50',
@@ -26,12 +25,12 @@ const QuotesForm: FunctionComponent = () => {
 
 			console.log(isValid)
 			if (isValid) {
-
 				const response = await fetchData(values);
 				const data = await response.json();
+				setQuotesViewStatus(true);
 				console.log(data)
-
-
+			} else {
+				setQuotesViewStatus(false);
 			}
 		},
 		validationSchema: validations
