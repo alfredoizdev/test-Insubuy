@@ -8,6 +8,11 @@
 	width: 100%;
 	padding: 10px 0;
 
+	span {
+		font-weight: 600;
+		color: $gray-dark;
+	}
+
 	button {
 		background-color: $gray-dark;
 		color: white;

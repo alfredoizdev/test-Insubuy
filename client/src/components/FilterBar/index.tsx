@@ -12,6 +12,7 @@ const FilterBar: FunctionComponent = () => {
 
 	return (
 		<div className={styles.filterBar}>
+			<span>Filter by</span>
 			<button
 				type='button'
 				onClick={() => filterBy(TFilter.bestSeller)}
