@@ -20,6 +20,7 @@ const Quote: FunctionComponent<Props> = ({ quote }) => {
 			<div className={styles.cardBody}>
 				<span>{quote.section}</span>
 				<p>{quote.description}</p>
+				<span className={styles.typeQuote}>Type: {quote.type}</span>
 			</div>
 			<div className={styles.cardFooter}>
 

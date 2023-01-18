@@ -11,14 +11,13 @@
 
 .grid {
 	display: flex;
-	justify-content: center;
+	justify-content: flex-start;
 	align-items: center;
 	flex-wrap: wrap;
 	gap: 5px;
 
 	div {
-		width: 33.33333%;
-
+		width: 32%;
 		@include for-640 {
 			width: 100%;
 		}
