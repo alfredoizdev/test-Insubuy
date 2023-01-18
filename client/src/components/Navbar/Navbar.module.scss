@@ -1,4 +1,5 @@
 @import 'styles/colors';
+@import 'styles/mixin';
 
 .navbarContainer {
 	width: 100%;
@@ -6,10 +7,21 @@
 	background-color: $primary;
 	display: flex;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: space-between;
 
 	h2 {
 		color: $dark;
 		margin-left: 10px;
+	}
+
+	button {
+		background-color: $dark;
+		color: white;
+		border: none;
+		padding: 7px;
+		font-size: 13px;
+		margin: 10px;
+		border-radius: 2px;
+		@include shadom-2
 	}
 }

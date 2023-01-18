@@ -1,7 +1,19 @@
+@import 'styles/colors';
+@import 'styles/mixin';
+
 .filterBar {
 	display: flex;
 	justify-content: flex-start;
 	align-items: center;
 	width: 100%;
 	padding: 10px 0;
+
+	button {
+		background-color: $gray-dark;
+		color: white;
+		border: none;
+		margin-left: 10px;
+		padding: 7px;
+		font-size: 13px;
+	}
 }
